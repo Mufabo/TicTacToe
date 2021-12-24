@@ -14,28 +14,33 @@ var gameBoard = (function() {
         document.getElementById("" + num).innerHTML = val;
     }
 
+    function _check(elem1, elem2, elem3){
+        return new Set([elem1, elem2, elem3]).size === 1 & elem1 !== "";
+    }
+
     function _checkRows(val) {
-        if(new Set([_state[0], _state[1], _state[2]]).size === 1 |
-        new Set([_state[3], _state[4], _state[5]]).size === 1 |
-        new Set([_state[6], _state[7], _state[8]]).size === 1 ) return true;
+        return _check(_state[0], _state[1], _state[2])|
+        _check(_state[3], _state[4], _state[5])=== 1 |
+        _check(_state[6], _state[7], _state[8])
     }
 
     function _checkCols(val) {
-        if(new Set([_state[0], _state[3], _state[6]]).size === 1 |
-        new Set([_state[1], _state[4], _state[7]]).size === 1 |
-        new Set([_state[2], _state[5], _state[8]]).size === 1 ) return true;
+        return _check(_state[0], _state[3], _state[6]) |
+        _check(_state[1], _state[4], _state[7]) |
+        _check(_state[2], _state[5], _state[8]) ;
     }
 
     function _checkDiag(val) {
-        if(
-            new Set([_state[0], _state[4], _state[8]]).size === 1 |
-            new Set([_state[2], _state[4], _state[6]]).size === 1) return true; }
+            return _check(_state[0], _state[4], _state[8]) |
+            _check(_state[2], _state[4], _state[6]);
+        }
 
     function _checkGameOver(val) {
         if(_state.indexOf("")===-1){
             return true;
         }
-        if (_checkCols(val) || _checkDiag(val) || _checkRows(val)) { return true; } else return false;
+        if (_checkCols(val) | _checkDiag(val) | _checkRows(val)) { 
+            return true; } else return false;
     }
 
     function setState(num, val) {
