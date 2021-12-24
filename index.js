@@ -14,13 +14,27 @@ var gameBoard = (function() {
         document.getElementById("" + num).innerHTML = val;
     }
 
-    function _checkRows(val) {}
+    function _checkRows(val) {
+        if(new Set([_state[0], _state[1], _state[2]]).size === 1 |
+        new Set([_state[3], _state[4], _state[5]]).size === 1 |
+        new Set([_state[6], _state[7], _state[8]]).size === 1 ) return true;
+    }
 
-    function _checkCols(val) {}
+    function _checkCols(val) {
+        if(new Set([_state[0], _state[3], _state[6]]).size === 1 |
+        new Set([_state[1], _state[4], _state[7]]).size === 1 |
+        new Set([_state[2], _state[5], _state[8]]).size === 1 ) return true;
+    }
 
-    function _checkDiag(val) {}
+    function _checkDiag(val) {
+        if(
+            new Set([_state[0], _state[4], _state[8]]).size === 1 |
+            new Set([_state[2], _state[4], _state[6]]).size === 1) return true; }
 
     function _checkGameOver(val) {
+        if(_state.indexOf("")===-1){
+            return true;
+        }
         if (_checkCols(val) || _checkDiag(val) || _checkRows(val)) { return true; } else return false;
     }
 
@@ -39,6 +53,7 @@ var gameBoard = (function() {
         }
         if (_checkGameOver()) {
             // Player lost or Tie
+            alert("You lost or Tie");
         }
     }
 
@@ -46,6 +61,7 @@ var gameBoard = (function() {
         if (setState(num, player)) {
             if (_checkGameOver()) {
                 // Player won or Tie
+                alert("You won or tie");
             } else _move_pc();
         }
     }
