@@ -4,8 +4,6 @@
 
 <head>
     <title>TicTacToe</title>
-    <script src="index.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,28 +12,37 @@
     <div id="startscreen" class="container">
         <div class="text">Choose your player. X goes first:</div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="X">
-            <label class="form-check-label" for="X">
-              X
-            </label>
+            <form name="theForm">
+                <input type="radio" name="player" value="X" checked> X
+                <input type="radio" name="player" value="O"> O<br><br>
+            </form>
         </div>
 
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="O" checked>
-            <label class="form-check-label" for="O">
-              O
-            </label>
-        </div>
-
-        <button>PLAY</button>
+        <button id="play" onclick="gameBoard.switchScreen(this) ">PLAY</button>
 
     </div>
 
-    <div id="gamescreen" style="display: none;">
+    <script src="index.js"></script>
 
-        <button>Restart</button>
+    <div id="gamescreen" style="display: none; ">
+
+        <button id="restart" onclick="gameBoard.switchScreen(this)">Restart</button>
+
+        <div class="game-board" id="game-board">
+            <div class="box" id="0" onclick="gameBoard.move(0)"></div>
+            <div class="box" id="1" onclick="gameBoard.move(1)"></div>
+            <div class="box" id="2" onclick="gameBoard.move(2)"></div>
+            <div class="box" id="3" onclick="gameBoard.move(3)"></div>
+            <div class="box" id="4" onclick="gameBoard.move(4)"></div>
+            <div class="box" id="5" onclick="gameBoard.move(5)"></div>
+            <div class="box" id="6" onclick="gameBoard.move(6)"></div>
+            <div class="box" id="7" onclick="gameBoard.move(7)"></div>
+            <div class="box" id="8" onclick="gameBoard.move(8)"></div>
+        </div>
     </div>
 
 </body>
+
+
 
 </html>
