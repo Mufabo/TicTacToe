@@ -59,6 +59,7 @@ var gameBoard = (function() {
         if (_checkGameOver()) {
             // Player lost or Tie
             alert("You lost or Tie");
+            restart();
         }
     }
 
@@ -67,34 +68,35 @@ var gameBoard = (function() {
             if (_checkGameOver()) {
                 // Player won or Tie
                 alert("You won or tie");
+                restart();
             } else _move_pc();
         }
     }
 
-    function getState() {
-        return _state;
+    function restart(){
+        document.getElementById("startscreen").style.display = "inline";
+        document.getElementById("gamescreen").style.display = "none";
+        _state = [
+            "", "", "",
+            "", "", "",
+            "", "", ""
+        ];
+        for (let c of document.getElementById("game-board").children) {
+            c.innerHTML = "";
+        }
     }
 
-    const switchScreen = function(screen) {
-        if (screen.id === "play") {
+    const switchScreen = function(screen, playerVal) {
+        if (screen.parentNode.id === "startscreen") {
             document.getElementById("startscreen").style.display = "none";
             document.getElementById("gamescreen").style.display = "inline";
-            player = document.querySelector('input[name="player"]:checked').value;
+            player = playerVal;
             if (player === "X") pc_val = "O";
-            else pc_val = "X";
-            if (player === "O") _move_pc();
-        } else {
-            document.getElementById("startscreen").style.display = "inline";
-            document.getElementById("gamescreen").style.display = "none";
-            _state = [
-                "", "", "",
-                "", "", "",
-                "", "", ""
-            ];
-            for (let c of document.getElementById("game-board").children) {
-                c.innerHTML = "";
+            else {
+                pc_val = "X";
+                _move_pc();
             }
-        }
+        } else restart();
     }
 
     return { player, pc_val, visualize, move, switchScreen };

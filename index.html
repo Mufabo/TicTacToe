@@ -11,14 +11,9 @@
 
     <div id="startscreen" class="container">
         <div class="text">Choose your player. X goes first:</div>
-        <div class="form-check">
-            <form name="theForm">
-                <input type="radio" name="player" value="X" checked> X
-                <input type="radio" name="player" value="O"> O<br><br>
-            </form>
-        </div>
 
-        <button id="play" onclick="gameBoard.switchScreen(this) ">PLAY</button>
+        <button id="playAsX" onclick="gameBoard.switchScreen(this, 'X') ">PLAY as X</button>
+        <button id="playAsO" onclick="gameBoard.switchScreen(this, 'O') ">PLAY as O</button>
 
     </div>
 
